@@ -387,7 +387,7 @@ class PaginationSection {
           this.sorting.by == "releaseDate" && this.sorting.ascending == true
             ? "id='sortingChoice'"
             : ""
-        } title="Ascending Sort by Release Date from newest to oldest"  data-sortBy="releaseDate" data-sortDirection="ascending">
+        } title="Ascending Sort by Release Date from newest to oldest" data-sortBy="releaseDate" data-sortDirection="ascending">
           <span class="sr-only">Ascending</span>
           <i class="fa-solid fa-arrow-down-long"></i>
           <i class="fa-solid fa-calendar-days"></i>
@@ -396,7 +396,7 @@ class PaginationSection {
           this.sorting.by == "releaseDate" && this.sorting.ascending == false
             ? "id='sortingChoice'"
             : ""
-        } title="Descending Sort by Release Date from oldest to newest"  data-sortBy="releaseDate" data-sortDirection="descending">
+        } title="Descending Sort by Release Date from oldest to newest" data-sortBy="releaseDate" data-sortDirection="descending">
           <span class="sr-only">Descending</span>
           <i class="fa-solid fa-arrow-up-long"></i>
           <i class="fa-solid fa-calendar-days"></i>
@@ -430,7 +430,11 @@ class PaginationSection {
         self.sorting.by = this.getAttribute("data-sortBy");
         self.sorting.ascending =
           this.getAttribute("data-sortDirection") == "ascending" ? true : false;
-        self.sortGames(self.sorting.by, self.sorting.ascending);
+        self.sortGames(
+          self.sorting.by,
+          self.sorting.ascending,
+          self.sorting.by == "releaseDate"
+        );
       });
     });
   }
@@ -479,30 +483,35 @@ class PaginationSection {
   refreshGamesList(filteredGames) {
     this.filteredGames = filteredGames;
     if (this.sorting.by)
-      this.sortGames(this.sorting.by, this.sorting.ascending);
+      this.sortGames(
+        this.sorting.by,
+        this.sorting.ascending,
+        this.sorting.by == "releaseDate"
+      );
 
     this.displaySection();
     this.displayGames();
   }
 
-  sortGames(by, ascending) {
-    this.filteredGames.sort((a, b) =>
-      (
-        typeof new Date(a[by] == "object")
-          ? ascending
-            ? new Date(a[by]) < new Date(b[by])
-            : new Date(a[by]) > new Date(b[by])
-          : typeof a[by] == "string"
-          ? ascending
-            ? a[by].toLowerCase() > b[by].toLowerCase()
-            : a[by].toLowerCase() < b[by].toLowerCase()
-          : ascending
-          ? a[by] > b[by]
-          : a[by] < b[by]
-      )
+  sortGames(by, ascending, isDate = false) {
+    this.filteredGames.sort((a, b) => {
+      let firstTerm, secondTerm;
+
+      if (isDate) {
+        firstTerm = new Date(b[by]);
+        secondTerm = new Date(a[by]);
+      } else if (typeof a[by] == "string") {
+        firstTerm = a[by].toLowerCase();
+        secondTerm = b[by].toLowerCase();
+      } else {
+        firstTerm = a[by];
+        secondTerm = b[by];
+      }
+
+      return (ascending ? firstTerm > secondTerm : firstTerm < secondTerm)
         ? 1
-        : -1
-    );
+        : -1;
+    });
 
     this.displaySortingSection();
     this.displayGames();
