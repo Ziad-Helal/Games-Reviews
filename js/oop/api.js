@@ -14,8 +14,11 @@ export class ApiFetch {
     };
   }
 
-  getAllGames() {
-    const url = this.baseUrl + this.endPoints.allGames;
+  getGames(category = "all") {
+    const url =
+      this.baseUrl +
+      this.endPoints.allGames +
+      (category == "all" ? "" : `?category=${category}`);
     return this.#fetchData(url);
   }
 

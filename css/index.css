@@ -254,8 +254,25 @@ button:disabled {
 
 /* 4.1- Header
 ============================== */
+
 #pageHeader {
   padding-top: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+#pageHeader select {
+  margin-right: 3rem;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  outline: none;
+  font-size: 1.1em;
+  border-radius: 0.5rem;
+  padding: 0.15rem;
+  text-transform: capitalize;
 }
 
 /* 4.2- Main

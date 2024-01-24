@@ -5,13 +5,10 @@ export class Page {
   #games;
   #filtersSection;
 
-  constructor(filters) {
-    this.loading();
-    new ApiFetch().getAllGames().then((games) => {
-      this.#games = new Games(games, filters);
-      this.displayRootStructure();
-      this.#filtersSection = new FiltersSection(this.#games);
-    });
+  constructor(filters, categories, currentCategory = "all") {
+    this.categories = ["all", ...categories];
+    this.currentCategory = currentCategory;
+    this.requestGames(filters);
   }
 
   displayRootStructure() {
@@ -53,6 +50,20 @@ export class Page {
         </div>
       </div>
     `;
+  }
+
+  requestGames(filters) {
+    this.loading();
+    new ApiFetch().getGames(this.currentCategory).then((games) => {
+      this.#games = new Games(games, filters);
+      this.displayRootStructure();
+      this.#filtersSection = new FiltersSection(this.#games);
+      this.#filtersSection.displayCategorySection(
+        this.categories,
+        this.currentCategory,
+        filters
+      );
+    });
   }
 }
 
@@ -143,6 +154,28 @@ class FiltersSection {
         );
       });
     });
+  }
+
+  displayCategorySection(categories, currentCategory, filters) {
+    const headerSection = document.getElementById("pageHeader");
+    const categorySelect = `
+      <select>
+        ${categories.map(
+          (cat) =>
+            `<option value="${cat}" ${
+              cat == currentCategory ? "selected" : ""
+            }>${cat}</option>`
+        )}
+      </select>
+    `;
+    headerSection.insertAdjacentHTML("beforeend", categorySelect);
+
+    headerSection
+      .querySelector("select")
+      .addEventListener(
+        "change",
+        (event) => new Page(filters, categories.slice(1), event.target.value)
+      );
   }
 
   displaySearchSection() {

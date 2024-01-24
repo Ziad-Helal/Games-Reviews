@@ -2,5 +2,14 @@ import { Page } from "./oop/page.js";
 
 (function () {
   const filters = ["genres", "platforms"];
-  new Page(filters);
+  const categories = [
+    "mmorpg",
+    "shooter",
+    "sailing",
+    "permadeath",
+    "superhero",
+    "pixel",
+  ];
+
+  new Page(filters, categories);
 })();
