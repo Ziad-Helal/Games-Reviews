@@ -183,8 +183,14 @@ button:disabled {
 .loadingSpinner-wraper {
   position: absolute;
   inset: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   z-index: 1;
 }
@@ -257,8 +263,14 @@ button:disabled {
 
 #pageHeader {
   padding-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
   align-items: flex-end;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -295,6 +307,10 @@ button:disabled {
 
   border-bottom: none;
   cursor: pointer;
+  -webkit-transition: color var(--primary-duration),
+    background-color var(--primary-duration);
+  -o-transition: color var(--primary-duration),
+    background-color var(--primary-duration);
   transition: color var(--primary-duration),
     background-color var(--primary-duration);
 }
@@ -320,6 +336,8 @@ button:disabled {
   border: var(--primary-border);
   border-radius: 0.5rem;
   border-top-right-radius: 0;
+  -webkit-transition: max-height calc(1.5 * var(--primary-duration));
+  -o-transition: max-height calc(1.5 * var(--primary-duration));
   transition: max-height calc(1.5 * var(--primary-duration));
 }
 
@@ -342,7 +360,10 @@ button:disabled {
 
 #filters > div:first-of-type ul {
   font-size: 0.8em;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
@@ -361,8 +382,12 @@ button:disabled {
   border: var(--primary-border);
   border-radius: 0.5rem;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 0.5rem;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   overflow: hidden;
 }
@@ -397,8 +422,14 @@ button:disabled {
 /* ========== 4.2.2.1- List Pagination ========== */
 
 #games #pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   margin-block: 1rem;
   color: var(--secondary-color);
@@ -406,7 +437,11 @@ button:disabled {
 }
 
 #games #pagination > * {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
 }
@@ -460,8 +495,10 @@ button:disabled {
 /* ========== 4.2.2.3- Games List ========== */
 
 #gamesList ul {
+  display: -ms-grid;
   display: grid;
   gap: 1.5rem;
+  -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
 }
 
@@ -471,39 +508,68 @@ button:disabled {
   border-radius: 0.35rem;
   overflow: hidden;
   cursor: pointer;
+  -webkit-transition: scale var(--primary-duration);
+  -o-transition: scale var(--primary-duration);
   transition: scale var(--primary-duration);
 }
 
 #gamesList .game img {
+  -webkit-filter: var(--secondary-color) scale(50%);
   filter: var(--secondary-color) scale(50%);
+  -webkit-transition: -webkit-filter var(--primary-duration);
+  transition: -webkit-filter var(--primary-duration);
+  -o-transition: filter var(--primary-duration);
   transition: filter var(--primary-duration);
+  transition: filter var(--primary-duration),
+    -webkit-filter var(--primary-duration);
 }
 
 #gamesList .game:hover img {
+  -webkit-filter: var(--secondary-color) scale(0);
   filter: var(--secondary-color) scale(0);
 }
 
 #gamesList .game figure {
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 #gamesList .game figcaption {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 #gamesList .game figcaption > *:first-child {
   padding: 0.5rem;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 #gamesList .game .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 1rem;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 0.5rem;
 }
@@ -511,16 +577,26 @@ button:disabled {
 #gamesList .game .foot {
   border-top: 2px solid var(--secondary-color);
   padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 1rem;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
 /* ========== 4.2.2.4- Games Sorting ========== */
 
 #gamesSorting {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin-inline: auto;
   border: var(--primary-border);
@@ -578,8 +654,14 @@ button:disabled {
 #gameDataModal > header > h3 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.75);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   font-size: 3em;
   padding: 0.5rem;
@@ -611,6 +693,8 @@ button:disabled {
 
 #gameDataModal #screenshots > div {
   margin-top: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 0.5rem;
 }
@@ -649,6 +733,8 @@ button:disabled {
   padding: 0.5rem;
   border-radius: 0.25rem;
   font-size: 1.25em;
+  -webkit-transition: background-color var(--primary-duration);
+  -o-transition: background-color var(--primary-duration);
   transition: background-color var(--primary-duration);
 }
 
@@ -686,6 +772,7 @@ button:disabled {
   /* ========== 5.1.2.1.1.1- Games List ========== */
 
   #gamesList ul {
+    -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
   }
 
@@ -719,6 +806,7 @@ button:disabled {
   /* ========== 5.2.2.1.1.1- Games List ========== */
 
   #gamesList ul {
+    -ms-grid-columns: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
